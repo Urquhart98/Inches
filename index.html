@@ -78,8 +78,16 @@ body.cart-open{overflow:hidden}.cart{border:0;background:none;cursor:pointer;pad
   .product{padding-left:5vw;padding-right:5vw}
   .sizes{gap:5px}
 }
+@keyframes inches-menu-enter{from{opacity:0;transform:translate3d(-18px,0,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+@keyframes inches-bag-enter{from{opacity:0;transform:translate3d(18px,0,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+.menu-button{animation:inches-menu-enter 1.6s cubic-bezier(.19,1,.22,1) .12s both}
+.nav-right{animation:inches-bag-enter 1.6s cubic-bezier(.19,1,.22,1) .12s both}
+@keyframes inches-hero-enter{from{opacity:0;transform:translate3d(36px,0,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+@keyframes inches-copy-enter{from{opacity:0;transform:translate3d(-28px,0,0)}to{opacity:1;transform:translate3d(0,0,0)}}
+.hero-image{animation:inches-hero-enter 2.05s cubic-bezier(.19,1,.22,1) .28s both}
+.hero-copy{animation:inches-copy-enter 1.8s cubic-bezier(.19,1,.22,1) .2s both}
 @media(max-width:760px){
-  .product{animation:inches-product-arrive 1.55s cubic-bezier(.16,1,.3,1) .12s both}
+  .product{animation:inches-product-arrive 1.9s cubic-bezier(.19,1,.22,1) .18s both}
   @keyframes inches-product-arrive{from{opacity:0;transform:translate3d(0,12vh,0)}to{opacity:1;transform:translate3d(0,0,0)}}
   .nav{position:sticky;top:0;z-index:10}
   .hero{height:auto;min-height:0;overflow:visible}
@@ -88,7 +96,7 @@ body.cart-open{overflow:hidden}.cart{border:0;background:none;cursor:pointer;pad
   .hero-image img{object-position:center}
 }
 @media(max-width:760px) and (prefers-reduced-motion:reduce){.product{animation:none;opacity:1;transform:none}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-comparison *{animation:none!important;transition:none!important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.nav,.hero-image,.hero-copy,.menu-button,.nav-right{animation:none!important;opacity:1!important;transform:none!important}.hero-comparison *{animation:none!important;transition:none!important}}
 @media(min-width:761px){.product{align-items:start}.product-gallery{align-self:start;aspect-ratio:.7/1;height:auto;min-height:0}}
 </style>
 </head>
