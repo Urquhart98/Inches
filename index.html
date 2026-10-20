@@ -87,15 +87,13 @@ body.cart-open{overflow:hidden}.cart{border:0;background:none;cursor:pointer;pad
 .hero-image{animation:inches-hero-enter 2.05s cubic-bezier(.19,1,.22,1) .28s both}
 .hero-copy{animation:inches-copy-enter 1.8s cubic-bezier(.19,1,.22,1) .2s both}
 @media(max-width:760px){
-  .product{animation:inches-product-arrive 1.9s cubic-bezier(.19,1,.22,1) .18s both}
-  @keyframes inches-product-arrive{from{opacity:0;transform:translate3d(0,12vh,0)}to{opacity:1;transform:translate3d(0,0,0)}}
   .nav{position:sticky;top:0;z-index:10}
   .hero{height:auto;min-height:0;overflow:visible}
   .hero-copy{height:auto;min-height:0;justify-content:flex-start;padding:32px 7vw 22px}
   .hero-image{inset:0;height:auto;min-height:0}
   .hero-image img{object-position:center}
 }
-@media(max-width:760px) and (prefers-reduced-motion:reduce){.product{animation:none;opacity:1;transform:none}}
+
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.nav,.hero-image,.hero-copy,.menu-button,.nav-right{animation:none!important;opacity:1!important;transform:none!important}.hero-comparison *{animation:none!important;transition:none!important}}
 @media(min-width:761px){.product{align-items:start}.product-gallery{align-self:start;aspect-ratio:.7/1;height:auto;min-height:0}}
 </style>
