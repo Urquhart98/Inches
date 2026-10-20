@@ -78,6 +78,16 @@ body.cart-open{overflow:hidden}.cart{border:0;background:none;cursor:pointer;pad
   .product{padding-left:5vw;padding-right:5vw}
   .sizes{gap:5px}
 }
+@media(max-width:760px){
+  .nav{position:sticky;top:0;z-index:10}
+  .hero{height:auto;min-height:0}
+  .hero-copy{height:auto;min-height:0;justify-content:flex-start;padding:32px 7vw 22px}
+  .hero-image{inset:0;height:auto;min-height:0}
+  .hero-image img{object-position:center}
+  .mobile-scroll-reveal{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.22,.61,.36,1),transform .8s cubic-bezier(.22,.61,.36,1)}
+  .mobile-scroll-reveal.is-visible{opacity:1;transform:translateY(0)}
+}
+@media(max-width:760px) and (prefers-reduced-motion:reduce){.mobile-scroll-reveal{opacity:1;transform:none;transition:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-comparison *{animation:none!important;transition:none!important}}
 @media(min-width:761px){.product{align-items:start}.product-gallery{align-self:start;aspect-ratio:.7/1;height:auto;min-height:0}}
 </style>
@@ -103,5 +113,6 @@ document.getElementById('open-cart').addEventListener('click',openCart);document
 document.getElementById('continue-checkout').addEventListener('click',()=>{if(!cartItems.length)return;checkoutView.classList.add('active');cartSummary.style.display='none';cartItemsNode.querySelectorAll('.cart-line').forEach(line=>line.style.display='none')});document.getElementById('back-to-bag').addEventListener('click',()=>{checkoutView.classList.remove('active');cartSummary.style.display='block';cartItemsNode.querySelectorAll('.cart-line').forEach(line=>line.style.display='grid')});
 document.getElementById('add-to-bag').addEventListener('click',()=>{if(!selectedSize){document.getElementById('size-error').textContent='Please select a size to continue.';return}const existing=cartItems.find(item=>item.size===selectedSize);if(existing)existing.qty++;else cartItems.push({size:selectedSize,qty:1});renderCart();const toast=document.getElementById('toast');toast.textContent=`The Western · UK ${selectedSize} added to your bag`;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2800)});
 document.getElementById('newsletter-form').addEventListener('submit',e=>{e.preventDefault();document.getElementById('form-feedback').textContent='Thank you — you’re on the list.';e.target.reset()});
+if(window.matchMedia('(max-width:760px)').matches&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver'in window){const revealTargets=[...document.querySelectorAll('#product,.manifesto,.features,.newsletter')];revealTargets.forEach(section=>section.classList.add('mobile-scroll-reveal'));let hasScrolled=window.scrollY>24;const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(hasScrolled&&entry.isIntersecting){entry.target.classList.add('is-visible');revealObserver.unobserve(entry.target)}}),{threshold:.08,rootMargin:'0px 0px -8% 0px'});revealTargets.forEach(section=>revealObserver.observe(section));const revealVisibleSections=()=>{if(window.scrollY<=24)return;hasScrolled=true;revealTargets.forEach(section=>{const bounds=section.getBoundingClientRect();if(bounds.top<window.innerHeight*.92&&bounds.bottom>0){section.classList.add('is-visible');revealObserver.unobserve(section)}})};window.addEventListener('scroll',revealVisibleSections,{passive:true});if(hasScrolled)revealVisibleSections()}
 </script>
 </body></html>
